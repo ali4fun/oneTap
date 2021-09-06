@@ -1,0 +1,25 @@
+<GridLayout rows="auto,*, auto">
+  <GridLayout row="0" columns="auto,*"  class="bottom-line pb-8">
+    <Image src="res://back" width="30" (tap)="goBack()" tintColor="#2e2e2e" class="ml-8" ></Image>
+    <Image col="1" src="res://logo" height="30" class="mb-8"></Image>
+  </GridLayout>
+  
+  <ScrollView row="1">
+    <StackLayout class="px-8 pb-8">
+      <ng-container *ngFor="let item of items">
+        <StackLayout class="radius-15 black-border px-20 py-16 mt-7">
+          <GridLayout rows="auto" columns="*,auto">
+            <Label [text]="item.notification_title" class="bold h3" ></Label>
+            <Label col="1" text="Table# {{item.table_number}}" class="h4a" ></Label>
+          </GridLayout>
+          <Label [text]="item.notification_content" textWrap="true" ></Label>
+          <Label text="Date: {{item.data}} Time:  {{item.ora}}" ></Label>
+        </StackLayout>
+      </ng-container>
+    </StackLayout>
+  </ScrollView>
+  <ng-container *ngIf="loading">
+    <ActivityIndicator row="1" busy="true" width="50" height="50" horizontalAlignment="center" verticalAlignment="center">
+    </ActivityIndicator>
+  </ng-container>
+</GridLayout>

@@ -1,0 +1,93 @@
+<GridLayout rows="auto,*, auto">
+  <GridLayout row="0" rows="auto,auto" class="bottom-line pb-8">
+   
+    <GridLayout rows="auto" columns="*,auto">
+      <Image src="res://logo" height="30" class="mb-8"></Image>
+      <Image col="1" [nsRouterLink]="['/notification']" src="res://notification" height="30" tintColor="#ffa41e" class="mb-8 mx-8"></Image>
+      <Label col="1" *ngIf="notification.length" class="dot" horizontalAlignment="right" ></Label>
+    </GridLayout>
+
+    <ScrollView scrollBarIndicatorVisible="false" orientation="horizontal" row="1">
+      <StackLayout orientation="horizontal">
+        <ng-container *ngFor="let table of tables">
+          <StackLayout>
+            <Label [text]="table.table_number" (tap)="tableNo = table.id_table;  getOrders(table.id_table);" 
+            class="h4a px-20 py-16 radius-5 mx-8 bg-{{table.table_color}} "></Label>
+            <StackLayout *ngIf="tableNo == table.id_table" height="2" class="bg-orange mt-5 mx-8"></StackLayout>
+          </StackLayout>
+        </ng-container>
+      </StackLayout>
+    </ScrollView>
+  </GridLayout>
+  
+  <ScrollView row="1">
+    <StackLayout class="px-8 pb-8">
+      <ng-container *ngIf="tableNo == '0'">
+        <Label text="Please Select Table" class="h3 center mt-7" ></Label>
+      </ng-container>
+      <ng-container *ngIf="tableDetails">
+        <StackLayout class="radius-15 black-border px-20 py-16 mt-7">
+          <GridLayout rows="auto" columns="*,auto">
+            <StackLayout orientation="horizontal">
+              <Label [text]="tableDetails.table_number" class="bold h2 bottom mx-8"></Label>
+              <Label [text]="tableDetails.timp_scanata" class="middle h4a bold" ></Label>
+            </StackLayout>
+            <StackLayout col="1" orientation="horizontal" horizontalAlignment="right">
+              <!-- <Button [enable]="tableDetails.mesemutaremasa" [text]="tableDetails.mutare" class="mx-20" ></Button> -->
+              <Button [enable]="tableDetails.mesedebarasaremasa != 'disabled'" [text]="tableDetails.debarasare" (tap)="clearTable()"
+                class="bg-green radius-5 px-5 label-white" height="30"></Button>
+            </StackLayout>
+          </GridLayout>
+         
+          <StackLayout class="seprator"></StackLayout>
+
+          <ng-container *ngIf="tableDetails?.mpt">
+            <Label [text]="tableDetails?.mpt"></Label>
+          </ng-container>
+
+          <ng-container *ngFor="let log of tableDetails.LOGS">
+            <GridLayout rows="auto" columns="*,auto,auto">
+              <StackLayout>
+                <Label text="{{log.de_facut}} {{log.loc_numar_nota}}" class="bold h4a"></Label>
+                <Label text="{{log.ora_cerut}}" class="h4" textWrap="true"></Label>
+              </StackLayout>
+              <Label col="1" text="{{log.actiune}}" ></Label>
+              <ng-container *ngIf="log.action_completed == '1'">
+                <Image col="2" src="res://check_tick" height="16" verticalAlignment="top" tintColor="#4bae4f" style="margin-top: 5;" ></Image>
+              </ng-container>
+              <ng-container *ngIf="log.action_completed == '0'">
+                <Image col="2" src="res://check_box" height="16" (tap)="checkIn(log.id_log)" verticalAlignment="top" style="margin-top: 5;" ></Image>
+              </ng-container>
+            </GridLayout>
+            
+            <ng-container *ngFor="let item of log.ITEMS">
+              <Label text="{{item.product_title}} {{item.subcategory_name}}"  > </Label>
+              <Label text="{{item.quantity}} buc x {{item.price}} {{item.table_moneda}} = {{item.total_price}} {{item.table_moneda}}"></Label>
+              <Label text="{{item.product_size}} {{item.id_um}}"> </Label>
+            </ng-container>
+
+            <!-- <ng-container *ngIf="log.arecomments" >
+              <Label text="Comments:" ></Label>
+              <Label text="{{log.comentarii}}" ></Label>
+            </ng-container>
+
+            <ng-container *ngIf="log.are_combi" >
+              <Label text="{{log.combi}}" ></Label>
+            </ng-container> -->
+            <StackLayout class="seprator"></StackLayout>
+
+          </ng-container>
+
+          <Label text="{{tableDetails.pret_total}} {{tableDetails.total_price}} {{tableDetails.table_moneda}}"></Label>
+        </StackLayout>
+      </ng-container>
+      <ng-container *ngIf="!tableDetails">
+        <Label [text]="tableDetails" class="h3 center my-20" ></Label>
+      </ng-container>
+    </StackLayout>
+  </ScrollView>
+  <ng-container *ngIf="loading">
+    <ActivityIndicator row="1" busy="true" width="50" height="50" horizontalAlignment="center" verticalAlignment="center">
+    </ActivityIndicator>
+  </ng-container>
+</GridLayout>

@@ -6,6 +6,7 @@
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:datePickerStyle">@style/SpinnerDatePicker</item>
         <item name="android:timePickerStyle">@style/SpinnerTimePicker</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="AppTheme" parent="AppThemeBase21">

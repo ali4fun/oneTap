@@ -1,25 +1,252 @@
-/*
-In NativeScript, the app.css file is where you place CSS rules that
-you would like to apply to your entire application. Check out
-http://docs.nativescript.org/ui/styling for a full list of the CSS
-selectors and properties you can use to style UI components.
 
-/*
-In many cases you may want to use the NativeScript core theme instead
-of writing your own CSS rules. You can learn more about the
-NativeScript core theme at https://github.com/nativescript/theme
-The imported CSS rules must precede all other types of rules.
-*/
 @import '@nativescript/theme/css/core.css';
 @import '@nativescript/theme/css/default.css';
 
-/* Place any CSS rules you want to apply on both iOS and Android here.
-This is where the vast majority of your CSS code goes. */
-
-/*
-The following CSS rule changes the font size of all Buttons that have the
-"-primary" class modifier.
-*/
-Button.-primary {
+.h1 {
+  font-size: 32;
+}
+.h2{
+  font-size: 22;
+}
+.h3{
   font-size: 18;
+}
+.h4a{
+  font-size: 14;
+}
+.h4{
+  font-size: 12;
+}
+.h5{
+  font-size: 10;
+}
+
+.lable-pin-color{
+  color: #3C3C3C;
+}
+.label-gray-light{
+  color: #6F6F6F;
+}
+.label-blur{
+  color: #898989;
+}
+
+.dosis{
+  font-family: 'Dosis';
+}
+.dubai{
+  font-family: 'Dubai';
+}
+.fira-sans{
+  font-family: 'Fira Sans';
+}
+.bold-800{
+  font-weight: 800;
+}
+.bold-700{
+  font-weight: 700;
+}
+.bold-600{
+  font-weight: 600;
+}
+.bold-500{
+  font-weight: 500;
+}
+.bold-400{
+  font-weight: 400;
+}
+.bold-300{
+  font-weight: 300;
+}
+.bold{
+  font-weight: bold;
+}
+.center{
+    text-align: center;
+}
+.middle{
+    vertical-align: middle;
+}
+.bottom{
+  vertical-align: bottom;
+}
+.label-white{
+  color: white;
+}
+.black-border{
+  border-width: 1;
+  border-color: #b9b9b9;
+}
+.bg-red{
+  background-color: #DC143C;
+}
+.bg-neon-yellow{
+  background-color: #00ff11;
+}
+.bg-green{
+  background-color: #4bae4f ;
+}
+.bg-light-green{
+  background-color: #00ff11;
+}
+.bg-gray-blur{
+  background-color: #DEDEDE;
+}
+.bg-active{
+  background-color: red;
+}
+.bg-blue{
+  background-color: blue;
+}
+.bg-orange{
+  background-color: orange;
+}
+.bg-wave{
+  background-image: url('res://waves');
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 100% 10%;
+  padding-bottom: 80;
+  padding-top: 20;
+}
+.app-top-android{
+  padding-top: 32;
+}
+
+.radius-5{
+  border-radius: 5;
+}
+.radius-15{
+  border-radius: 15;
+}
+.py-0{
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.px-5{
+  padding-left: 5;
+  padding-right: 5;
+}
+.px-8{
+  padding-left: 8;
+  padding-right: 8;
+}
+.pb-8{
+  padding-bottom: 8;
+}
+.py-16{
+  padding-top: 16 ;
+  padding-bottom: 16;
+}
+.px-20{
+  padding-left: 20;
+  padding-right: 20;
+}
+.px-25{
+  padding-left: 25;
+  padding-right: 25;
+}
+.px-40{
+  padding-left: 40;
+  padding-right: 40;
+}
+.py-20{
+  padding-top: 20;
+  padding-bottom: 20;
+}
+
+.my-0{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.mx-0{
+  margin-left: 0;
+  margin-right: 0;
+}
+.mt-5{
+  margin-top: 5;
+}
+.mt-7{
+  margin-top: 7;
+}
+.mb-8{
+  margin-bottom: 8;
+}
+.ml-8{
+  margin-left: 8;
+}
+.mx-8{
+  margin-left: 8;
+  margin-right: 8;
+}
+.my-8{
+  margin-top: 8;
+  margin-bottom: 8;
+}
+.mt-10{
+  margin-top: 10;
+}
+.mr-10{
+  margin-right: 10;
+}
+.mx-16{
+  margin-left: 16;
+  margin-right: 16;
+}
+.mt-20{
+  margin-top: 20;
+}
+.my-20{
+    margin-top: 20;
+    margin-bottom: 20;
+}
+.mx-20{
+  margin-left: 20;
+  margin-right: 20;
+}
+.mb-30{
+  margin-bottom: 30;
+}
+.my-40{
+    margin-top: 40;
+    margin-bottom: 40;
+}
+.mb-50{
+  margin-bottom: 50;
+}
+
+.btn-login{
+    background: linear-gradient(97.86deg, #f36e46 22.04%, #ff3c00 76.93%);
+    border-radius: 15;
+    color: white;
+    font-weight: bold;
+    font-family: "Dubai";
+    font-size: 18;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.login-field{
+  margin-top: 10;
+  padding: 15;
+  font-size: 16;
+  color: #6F6F6F;
+  height: 50;
+  border-width: 1;
+  border-color: #D4E4E6;
+  margin-left: 0;
+  margin-right: 0;    
+}
+.bottom-line{
+  border-bottom-width: 1;
+  border-bottom-color: #f36e46;
+}
+.dot{
+  width: 10;
+  height: 10;
+  background-color: red;
+  border-radius: 5;
+  vertical-align: top;
+  text-align: right;
+  margin-right: 10;
 }
