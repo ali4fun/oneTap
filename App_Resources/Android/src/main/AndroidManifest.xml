@@ -36,5 +36,7 @@
 			</intent-filter>
 		</activity>
 		<activity android:name="com.tns.ErrorReportActivity"/>
+		<service android:enabled="true" android:name="org.nativescript.oneTapNotifications.Continuous_Service" />
+
 	</application>
 </manifest>

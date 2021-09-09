@@ -11,18 +11,29 @@ import { ConnectionService } from './connection.service';
 })
 export class DataService {
 
-  user_info: any = {};
-  debug: boolean = false;
+  public user_info: any = {};
+  public tabels : Array<any> = [];
 
-  checkConversation: boolean = false;
+  public debug: boolean = true;
+  public checkConversation: boolean = false;
 
-  constructor(public cache: CacheService, public conn: ConnectionService) { }
+  public conn: ConnectionService;
+  public cache: CacheService;
 
-  saveUserInfo(user: any) {
+  constructor() { 
+    this.conn = new ConnectionService();
+    this.cache = new CacheService();
+  }
+
+  public getTables() : Array<any> {
+    return this.tabels;
+  }
+
+  public saveUserInfo(user: any) {
     this.cache.put('user', JSON.stringify(user));
   }
 
-  getUserInfo(): any {
+  public getUserInfo(): any {
     if (this.cache.get('user')) return JSON.parse(this.cache.get('user'));
     else return null;
   }
@@ -31,13 +42,30 @@ export class DataService {
     this.cache.removeAll();
   }
 
+  getUpdate(){
+    let doc={
+        id_user : this.getUserInfo().id_user
+    };
+    this.log('actualizare_mese doc',doc);
+    this.postCall('actualizare_mese',doc).subscribe(
+        (res)=>{
+            this.log('actualizare_mese result:',res);
+            if(res.scorRaspuns)
+            this.tabels = res.result;
+        },(err)=>{
+            this.log('actualizare_mese error',err);
+        }
+    );
 
-  postCall(endpoint: string, doc: any): Observable<any> {
+}
+
+
+  public postCall(endpoint: string, doc: any): Observable<any> {
 
     let call = new Observable<any>(
       (observer) => {
         Http.request({
-          url: appConfig.apiUrl + endpoint, // + '/' + appConfig.appKey,
+          url: appConfig.apiUrl + endpoint,
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -57,11 +85,8 @@ export class DataService {
     return call;
   }
 
-  updateTables(){
 
-  }
-
-  log(...res: Array<any>) {
+  public log(...res: Array<any>) : void {
     if (this.debug) console.log(...res);
   }
 

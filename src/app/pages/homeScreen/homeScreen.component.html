@@ -1,13 +1,11 @@
 <GridLayout rows="auto,*, auto">
-  <GridLayout row="0" rows="auto,auto" class="bottom-line pb-8">
-   
-    <GridLayout rows="auto" columns="*,auto">
-      <Image src="res://logo" height="30" class="mb-8"></Image>
-      <Image col="1" [nsRouterLink]="['/notification']" src="res://notification" height="30" tintColor="#ffa41e" class="mb-8 mx-8"></Image>
-      <Label col="1" *ngIf="notification.length" class="dot" horizontalAlignment="right" ></Label>
-    </GridLayout>
+  <GridLayout row="0" rows="auto,auto" columns="auto,*,auto" class="bottom-line pb-8 mx-8">
+    <Image src="res://logout" height="30" tintColor="#ffa41e" class="mb-8" (tap)="logout()"></Image>
+    <Image col="1" src="res://logo" height="30" class="mb-8 "></Image>
+    <Image col="2" [nsRouterLink]="['/notification']" src="res://notification" horizontalAlignment="right" height="30" tintColor="#ffa41e" class="mb-8 mx-8"></Image>
+    <Label col="2" *ngIf="notification.length" class="dot" horizontalAlignment="right" ></Label>
 
-    <ScrollView scrollBarIndicatorVisible="false" orientation="horizontal" row="1">
+    <ScrollView scrollBarIndicatorVisible="false" orientation="horizontal" row="1" col="0" colSpan="2">
       <StackLayout orientation="horizontal">
         <ng-container *ngFor="let table of tables">
           <StackLayout>
@@ -18,6 +16,7 @@
         </ng-container>
       </StackLayout>
     </ScrollView>
+    <Button row="1" col="2" height="50" text="Edit" class="h4a px-20 py-16 radius-5 mx-8 bg-green mt-0" [nsRouterLink]="['/tables']"></Button>
   </GridLayout>
   
   <ScrollView row="1">

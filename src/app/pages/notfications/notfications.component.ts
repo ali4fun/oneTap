@@ -32,7 +32,7 @@ export class NotficationsComponent implements OnInit,OnDestroy {
 
     getNotification(){
         let doc = {
-            id_user : this.data.user_info.id_user
+            id_user : this.data.getUserInfo().id_user
         };
         this.data.log('get_notifications doc=>', doc);
         this.data.postCall('get_notifications',doc).subscribe(

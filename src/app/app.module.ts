@@ -3,11 +3,10 @@ import { NativeScriptFormsModule, NativeScriptModule } from '@nativescript/angul
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
-import { ItemsComponent } from './item/items.component'
-import { ItemDetailComponent } from './item/item-detail.component'
 import { LoginComponent } from './pages/login/login.component';
 import { HomeScreenComponent } from './pages/homeScreen/homeScreen.component';
 import { NotficationsComponent } from './pages/notfications/notfications.component';
+import { TablesComponent } from './pages/tables/tables.component';
 
 import { CacheService } from './shared/cache.service';
 import { DataService } from './shared/data.service';
@@ -16,7 +15,8 @@ import { ConnectionService } from './shared/connection.service';
 const pages = [
   LoginComponent,
   HomeScreenComponent,
-  NotficationsComponent
+  NotficationsComponent,
+  TablesComponent
 ];
 @NgModule({
   bootstrap: [AppComponent],
@@ -25,7 +25,7 @@ const pages = [
     AppRoutingModule,
     NativeScriptFormsModule,
   ],
-  declarations: [AppComponent, ...pages, ItemsComponent, ItemDetailComponent],
+  declarations: [AppComponent, ...pages],
   providers: [
     ConnectionService, CacheService, DataService
   ],

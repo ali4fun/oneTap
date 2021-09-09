@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterExtensions } from '@nativescript/angular';
-import { Page } from '@nativescript/core';
+import { Page, Utils } from '@nativescript/core';
+import { CONTINUOUS_SERVICE_CLASSNAME } from '~/app/shared/background/continuous_service.android';
 import { DataService } from '~/app/shared/data.service';
 
 @Component({
@@ -13,14 +14,11 @@ export class LoginComponent implements OnInit {
     loginTitle: string = 'Switch to Email Log in.';
     isPinLogin: boolean = true;
 
-    // pin: string = '1234';
-    // user_code: string = '0360175';
+    pin: string = '1234';
+    user_code: string = '0360175';
 
-    pin: string = '';
-    user_code: string = '';
-
-    email: string = 'parvinder704@yopmail.com';
-    password: string = 'admin123';
+    // pin: string = '';
+    // user_code: string = '';
 
     _loading: boolean = false;
     get loading(): boolean {
@@ -34,8 +32,7 @@ export class LoginComponent implements OnInit {
     }
 
     submit() {
-        if (this.isPinLogin) this.loginPin();
-        else this.loginEmail();
+        this.loginPin();
     }
 
     loginPin() {
@@ -62,6 +59,7 @@ export class LoginComponent implements OnInit {
                     this.data.user_info = res.user;
                     this.data.user_info.pin = this.pin;
                     this.data.saveUserInfo(res.user);
+                    this.start();
                     this.routerExt.navigate(['/home'], { clearHistory: true });
                 } else if (res.errors) {
                     alert('pin error');
@@ -75,39 +73,14 @@ export class LoginComponent implements OnInit {
         );
     }
 
-    loginEmail() {
-        if (this._loading) return;
-        this._loading = true;
-        console.log(this.email, this.password);
-        if (!this.email || !this.password) {
-            alert('Please add both email and password');
-            this._loading = false;
-            return;
-        }
+    start() {
+        let context = Utils.ad.getApplicationContext();
+        const serviceIntent = new android.content.Intent();
+        serviceIntent.setClassName(context, CONTINUOUS_SERVICE_CLASSNAME);
+        context.startService(serviceIntent);
+    
+      }
 
-        let doc = {
-            email_username: this.email,
-            password: this.password
-        };
-
-        this.data.log('loginbyEmail =>', doc);
-        this.data.postCall('loginbyEmail', doc).subscribe(
-            (res) => {
-                this.data.log('loginByEmail result', res);
-                if (res.user) {
-                    this.data.user_info = res.user;
-                    this.data.saveUserInfo(res.user);
-                    this.routerExt.navigate(['/dashboard'], { clearHistory: true });
-                } else if (res.errors) {
-                    alert('pin error');
-                }
-                this._loading = false;
-            }, (err) => {
-                this.data.log('loginByEmail error', err);
-                this._loading = false;
-            }
-        );
-    }
 
     onCheckedChange(args) {
         console.log(args.value);

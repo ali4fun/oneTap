@@ -18,6 +18,10 @@ export class ConnectionService implements OnDestroy {
 		// this.loop();
 	}
 
+	change(){
+		this.isConnected = false;
+	}
+
 	// public loop(){
 	// 	setTimeout(() => {
 	// 		console.log('backgound connection working....');
