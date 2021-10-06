@@ -14,11 +14,11 @@ export class LoginComponent implements OnInit {
     loginTitle: string = 'Switch to Email Log in.';
     isPinLogin: boolean = true;
 
-    pin: string = '1234';
-    user_code: string = '0360175';
+    // pin: string = '1234';
+    // user_code: string = '0360175';
 
-    // pin: string = '';
-    // user_code: string = '';
+    pin: string = '';
+    user_code: string = '';
 
     _loading: boolean = false;
     get loading(): boolean {
@@ -55,15 +55,15 @@ export class LoginComponent implements OnInit {
         this.data.postCall('login', doc).subscribe(
             (res) => {
                 this.data.log('login result', res);
-                if (res.user) {
+                if (res.scorRaspuns == 1) {
                     this.data.user_info = res.user;
                     this.data.user_info.pin = this.pin;
                     this.data.saveUserInfo(res.user);
                     this.start();
                     this.routerExt.navigate(['/home'], { clearHistory: true });
-                } else if (res.errors) {
-                    alert('pin error');
-                }
+                } else {
+                    alert(res.message);
+                } 
                 this._loading = false;
             }, (err) => {
                 this.data.log('login error', err);

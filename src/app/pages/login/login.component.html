@@ -6,7 +6,7 @@
       <TextField hint="User Code" [(ngModel)]="user_code" keyboardType="phone" returnKeyType="next"
         class="bg-gray-blur radius-15 login-field"></TextField>
     </StackLayout>
-    <TextField hint="PIN Code" [(ngModel)]="pin" keyboardType="phone" returnKeyType="done"
+    <TextField hint="PIN Code" [(ngModel)]="pin" [secure]="true" keyboardType="number" returnKeyType="done"
       class="bg-gray-blur radius-15 login-field"></TextField>
     <Button text="Log in" class="btn-login my-40" (tap)="submit()"></Button>
 

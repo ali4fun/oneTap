@@ -49,8 +49,7 @@ class Continuous_Service extends android.app.Service {
             
 
         console.log("SERVICE CREATED");
-        // this.play();
-        // this.puase();
+
         if(!LocalNotifications.hasPermission())
         LocalNotifications.requestPermission().then( (res)=>{
             this.data.log('permission granted.....');
@@ -67,14 +66,14 @@ class Continuous_Service extends android.app.Service {
 
     onStartCommand(intent: android.content.Intent, flags: number, startId: number): number {
         console.log("SERVICE STARTED", new Date().toTimeString());
-        return android.app.Service.START_REDELIVER_INTENT;
+        return android.app.Service.START_STICKY_COMPATIBILITY;
     }
 
     onDestroy(): void {
         console.log("SERVICE DESTROYED", new Date().toTimeString());
         super.onDestroy();
-        clearInterval(this.timerId);
-        this.cache.setBoolean('service',false);
+        // clearInterval(this.timerId);
+        // this.cache.setBoolean('service',false);
         this._player.dispose();
     }
 

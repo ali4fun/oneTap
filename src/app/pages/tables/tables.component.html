@@ -6,6 +6,9 @@
   
   <ScrollView row="1">
     <StackLayout class="px-8 pb-8">
+      <ng-container *ngIf="!items.length && !loading">
+        <Label text="No Table found." class="center my-20" ></Label>
+      </ng-container>
       <ng-container *ngFor="let item of items">
         <GridLayout columns="*,auto" rows="auto" class="radius-15 black-border px-20 py-16 mt-7">
           <Label text = "Table # {{item.table_number}}" class="bold h3" ></Label>

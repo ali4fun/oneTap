@@ -97,8 +97,6 @@ export class HomeScreenComponent implements OnInit, OnDestroy {
 
     }
 
-
-
     checkNotification() {
         this.notification = [];
         this.tables.forEach((tabl) => {
@@ -201,6 +199,6 @@ export class HomeScreenComponent implements OnInit, OnDestroy {
         const serviceIntent = new android.content.Intent();
         serviceIntent.setClassName(context, CONTINUOUS_SERVICE_CLASSNAME);
         context.stopService(serviceIntent);
-      }
+    }
 
 }
