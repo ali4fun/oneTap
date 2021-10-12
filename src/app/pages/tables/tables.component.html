@@ -1,7 +1,9 @@
 <GridLayout rows="auto,*, auto">
-  <GridLayout row="0" columns="auto,*"  class="bottom-line pb-8">
+  <GridLayout row="0" columns="auto,*,auto" rows="auto,auto"  class="bottom-line pb-8">
     <Image src="res://back" width="30" (tap)="goBack()" tintColor="#2e2e2e" class="ml-8" ></Image>
-    <Image col="1" src="res://logo" height="30" class="mb-8"></Image>
+    <!-- <Image col="1" src="res://logo" height="20" class="mb-8"></Image> -->
+    <Image col="3" src="res://logout" height="30" tintColor="#ffa41e" class="mb-8 mx-16" (tap)="logout()"></Image>
+    <Label col="1" text="Mesele Mele" class="center bold-800 h2 mb-8" ></Label>
   </GridLayout>
   
   <ScrollView row="1">

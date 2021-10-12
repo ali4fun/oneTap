@@ -127,7 +127,9 @@ export class HomeScreenComponent implements OnInit, OnDestroy {
     }
 
 
-    clearTable() {
+    clearTable(enable : string) {
+        if(enable == 'disabled') return;
+        
         this._loading = true;
         let doc = {
             id_user: this.data.getUserInfo().id_user,

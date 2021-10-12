@@ -71,4 +71,9 @@ export class TablesComponent implements OnInit,OnDestroy {
         this.routerExt.back();
     }
 
+    logout(){
+        this.data.logout();
+        this.routerExt.navigate(['/login'], {clearHistory: true} );
+    }
+
 }

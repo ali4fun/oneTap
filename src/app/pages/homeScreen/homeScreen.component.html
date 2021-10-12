@@ -1,11 +1,13 @@
 <GridLayout rows="auto,*, auto">
-  <GridLayout row="0" rows="auto,auto" columns="auto,*,auto" class="bottom-line pb-8 mx-8">
-    <Image src="res://logout" height="30" tintColor="#ffa41e" class="mb-8" (tap)="logout()"></Image>
-    <Image col="1" src="res://logo" height="30" class="mb-8 "></Image>
-    <Image col="2" [nsRouterLink]="['/notification']" src="res://notification" horizontalAlignment="right" height="30" tintColor="#ffa41e" class="mb-8 mx-8"></Image>
-    <Label col="2" *ngIf="notification.length" class="dot" horizontalAlignment="right" ></Label>
+  <GridLayout row="0" rows="auto,auto" columns="*,auto,auto,auto" class="bottom-line pb-8 mx-8">
+   
+    <Image col="0" src="res://logo" height="20" horizontalAlignment="left" class="mb-8 mx-16"></Image>
+    <Image col="1" [nsRouterLink]="['/notification']" src="res://notification" horizontalAlignment="right" height="30" tintColor="#ffa41e" class="mb-8 mx-8"></Image>
+    <Label col="1" *ngIf="notification.length" class="dot" horizontalAlignment="right" ></Label>
+    <Image col="2" src="res://account" height="30" tintColor="#ffa41e" class="mb-8 mr-10" [nsRouterLink]="['/tables']"></Image>
+    <Image col="3" src="res://logout" height="30" tintColor="#ffa41e" class="mb-8" (tap)="logout()"></Image>
 
-    <ScrollView scrollBarIndicatorVisible="false" orientation="horizontal" row="1" col="0" colSpan="2">
+    <ScrollView orientation="horizontal" row="1" col="0" colSpan="4">
       <StackLayout orientation="horizontal">
         <ng-container *ngFor="let table of tables">
           <StackLayout>
@@ -16,7 +18,6 @@
         </ng-container>
       </StackLayout>
     </ScrollView>
-    <Button row="1" col="2" height="50" text="Edit" class="h4a px-20 py-16 radius-5 mx-8 bg-green mt-0" [nsRouterLink]="['/tables']"></Button>
   </GridLayout>
   
   <ScrollView row="1">
@@ -33,8 +34,8 @@
             </StackLayout>
             <StackLayout col="1" orientation="horizontal" horizontalAlignment="right">
               <!-- <Button [enable]="tableDetails.mesemutaremasa" [text]="tableDetails.mutare" class="mx-20" ></Button> -->
-              <Button [enable]="tableDetails.mesedebarasaremasa != 'disabled'" [text]="tableDetails.debarasare" (tap)="clearTable()"
-                class="bg-green radius-5 px-5 label-white" height="30"></Button>
+              <Button [text]="tableDetails.debarasare" (tap)="clearTable(tableDetails.mesedebarasaremasa)"
+                class="{{tableDetails.mesedebarasaremasa == 'disabled'? 'bg-gray-blur' : 'bg-green'}} radius-5 px-5 label-white" height="30"></Button>
             </StackLayout>
           </GridLayout>
          
